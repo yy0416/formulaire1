@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // nettoyage et validation des données soumises via le formulaire 
+    if (!isset($_POST['name']) || trim($_POST['name']) === '')
+        $errors[] = "Le nom est obligatoire";
+    if (!isset($_POST['lastname']) || trim($_POST['lastname']) === '')
+        $errors[] = "Le prénom est obligatoire";
+    if (!isset($_POST['sujet']) || trim($_POST['sujet']) === '')
+        $errors[] = "Sujet est obligatoire";
+    if (!isset($_POST['e-mail']) || trim($_POST['e-mail']) === '')
+        $errors[] = "e-mail est obligatoire";
+    if (!isset($_POST['phoneNumber']) || trim($_POST['phoneNumber']) === '')
+        $errors[] = "phoneNumber est obligatoire";
+    if (!isset($_POST['message']) || trim($_POST['message']) === '')
+        $errors[] = "message est obligatoire";
+    if (empty($errors)) {
+        // traitement du formulaire
+        // puis redirection
+        header('/');
+    }
+}
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +33,9 @@
 </head>
 
 <body>
+
+
+
     <form action="/thanks.php" method="post">
         <p class='row'>
             <label for='name'>NOM</label>
@@ -30,7 +57,9 @@
             <select name='sujet' id='language' multiple size='4'>
                 <option value='sujet1'>sujet1</option>
                 <option value='sujet2'>sujet2</option>
-                <option value='sujet2'>sujet2</option>
+                <option value='sujet3'>sujet3</option>
+                <option value='sujet4'>sujet4</option>
+                <option value='sujet5'>sujet5</option>
             </select>
         <p class='row'>
             <label for='message'>message</label>
