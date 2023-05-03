@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Sujet est obligatoire";
     if (!isset($_POST['e-mail']) || trim($_POST['e-mail']) === '')
         $errors[] = "e-mail est obligatoire";
+    if (!filter_var($_POST['e-mail'], FILTER_VALIDATE_EMAIL))
+        $errors[] = "Le format de l'email est invalide.";
     if (!isset($_POST['phoneNumber']) || trim($_POST['phoneNumber']) === '')
         $errors[] = "phoneNumber est obligatoire";
     if (!isset($_POST['message']) || trim($_POST['message']) === '')
@@ -23,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('/');
     }
 }
+
 ?>
 
 <head>
