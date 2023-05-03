@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Le nom est obligatoire";
     if (!isset($_POST['lastname']) || trim($_POST['lastname']) === '')
         $errors[] = "Le prénom est obligatoire";
-    if (!isset($_POST['sujet']) || trim($_POST['sujet']) === '')
+    if (!isset($_POST['sujet']) || !is_array($_POST['sujet']) || count($_POST['sujet']) === 0)
         $errors[] = "Sujet est obligatoire";
     if (!isset($_POST['e-mail']) || trim($_POST['e-mail']) === '')
         $errors[] = "e-mail est obligatoire";
